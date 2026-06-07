@@ -5,13 +5,12 @@ import java.sql.*;
 public class Singleton {
 
     private static Singleton uniqueInstance;
-    private Connection connection; 
+    private Connection connection;
 
-    private static final String URL = "jdbc:sqlite:C:/Users/Nicolas/Documents/Repositorio/atividade_PadroesCriacionais2/padroasCriacionais/base.db";
+    private static final String URL = "jdbc:sqlite:C:base.db";
 
     private Statement statement = null;
     private ResultSet rs = null;
-
 
     private Singleton() {
 
@@ -24,10 +23,13 @@ public class Singleton {
             // Comandos SQL para construir a base de dados
             statement.executeUpdate("DROP TABLE IF EXISTS produtc");
             statement.executeUpdate(
-                    "CREATE TABLE produtc (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name STRING, price DECIMAL, amount INTEGER)");
+                    "CREATE TABLE produtc (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name STRING NOT NULL, price DECIMAL NOT NULL, amount INTEGER NOT NULL)");
             statement.executeUpdate("INSERT INTO produtc (name,price,amount) VALUES('XBOX',2399.99,34)");
             statement.executeUpdate("INSERT INTO produtc (name,price,amount) VALUES('PLAYSTATION',2599.99,23)");
             rs = statement.executeQuery("SELECT * FROM produtc");
+            statement.executeUpdate("DROP TABLE IF EXISTS payments");
+            statement.executeUpdate(
+                    "CREATE TABLE payments (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, types TEXT NOT NULL CHECK('Boleto','Cartao','Pix'), price DECIMAl NOT NULL, datePayment TEXT NOT NULL");
 
             while (rs.next()) {
                 System.out.println("Nome do produto: " + rs.getString("name"));
@@ -38,9 +40,12 @@ public class Singleton {
             System.err.println(e.getMessage());
         } finally {
             try {
-                if (connection != null) connection.close();
-                if (statement != null) statement.close();
-                if (rs != null) rs.close();
+                if (connection != null)
+                    connection.close();
+                if (statement != null)
+                    statement.close();
+                if (rs != null)
+                    rs.close();
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
             }
@@ -56,6 +61,10 @@ public class Singleton {
             uniqueInstance = new Singleton();
         }
         return uniqueInstance;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
 }
