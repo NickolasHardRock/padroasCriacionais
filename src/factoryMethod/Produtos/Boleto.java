@@ -18,14 +18,19 @@ public void pagar(){
     
     System.out.println("Digite o valor:");
     Double valor = sc.nextDouble();
-    
+    System.out.println("Chegou aqui 1");
     try{
         Connection conn = Singleton.getInstance().getConnection();
-        PreparedStatement statement = conn.prepareStatement("INSERT INTO payments (types,price,datePayment) VALUES (?,?,?)");
+        System.out.println("Chegou aqui 2");
+        try(PreparedStatement statement = conn.prepareStatement("INSERT INTO payments (types,price,datePayment) VALUES (?,?,?)");
+        ){
+            System.out.println("Chegou aqui 3");
         statement.setString(1, "Boleto");
         statement.setDouble(2, valor);
         statement.setString(3, LocalDate.now().toString());
         statement.executeUpdate();
+        }
+        
     }catch(SQLException e){
         e.printStackTrace();
     }
