@@ -1,10 +1,7 @@
 package facade.stubs;
 
 public class EstoqueService {
-
-    public boolean verificarDisponibilidade(Pedido pedido){
-        System.out.println( "Verificando estoque...");
-        return true;
+    public void baixarEstoque() {
+        System.out.println("[Estoque] Itens baixados do estoque.");
     }
-
 }

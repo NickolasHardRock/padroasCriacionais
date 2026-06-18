@@ -18,4 +18,10 @@ public class GatewayAdapter implements Pagar {
         gateway.processarTransacao(dados);
     }
 
+    @Override
+    public void pagar(double valor){
+        System.out.println("Adaptando pagamento de R$" + valor);
+        gateway.processarTransacao(dados);
+    }
+
 }

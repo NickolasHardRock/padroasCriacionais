@@ -1,7 +1,7 @@
 package facade.stubs;
 
 public class CarrinhoSercive {
-    public static void atualizarCarrinho(Pedido pedido) {
-        System.out.println("Atualizar carrinho...");
+    public void limparCarrinho() {
+        System.out.println("[Carrinho] Carrinho limpo.");
     }
 }

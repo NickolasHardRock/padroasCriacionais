@@ -2,7 +2,7 @@ package decorator;
 
 import factoryMethod.Produtos.Pagar;
 
-public abstract class PagamentoDecorator implements Pagar{
+public abstract class PagamentoDecorator implements Pagar {
 
     protected Pagar pagamentoDecorado;
 
@@ -11,12 +11,12 @@ public abstract class PagamentoDecorator implements Pagar{
     }
 
     @Override
+    public void pagar(){
+        pagamentoDecorado.pagar();
+    }
+
+    @Override
     public void pagar(double valor){
         pagamentoDecorado.pagar(valor);
     }
-
-
-
-
-
 }

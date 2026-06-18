@@ -2,7 +2,7 @@ package decorator;
 
 import factoryMethod.Produtos.Pagar;
 
-public class LogDecorator extends pagamentoDecorado{
+public class LogDecorator extends PagamentoDecorator {
     public LogDecorator(Pagar pagamentoDecorado){
         super(pagamentoDecorado);
     }
@@ -12,6 +12,4 @@ public class LogDecorator extends pagamentoDecorado{
         System.out.println("[LOG] valor cobrado: R$" + valor);
         super.pagar(valor);
     }
-
-
 }
