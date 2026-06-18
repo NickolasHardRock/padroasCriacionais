@@ -6,8 +6,8 @@ public abstract class PagamentoFactory {
     
     public abstract Pagar CriarPagamento();
 
-    public void escolherPagamento(){
+    public void escolherPagamento(double valor){
         Pagar pagarObjeto = CriarPagamento();
-        pagarObjeto.pagar();
+        pagarObjeto.pagar(valor);
     }
 }

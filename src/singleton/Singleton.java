@@ -25,13 +25,13 @@ public class Singleton {
             // Comandos SQL para construir a base de dados
             statement.executeUpdate("DROP TABLE IF EXISTS produtc");
             statement.executeUpdate(
-                    "CREATE TABLE produtc (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name STRING NOT NULL, price DECIMAL NOT NULL, amount INTEGER NOT NULL)");
+                    "CREATE TABLE produtcs (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name STRING NOT NULL, price DECIMAL NOT NULL, amount INTEGER NOT NULL)");
             statement.executeUpdate("INSERT INTO produtc (name,price,amount) VALUES('XBOX',2399.99,34)");
             statement.executeUpdate("INSERT INTO produtc (name,price,amount) VALUES('PLAYSTATION',2599.99,23)");
             
-            statement.executeUpdate("DROP TABLE IF EXISTS payments");
-            statement.executeUpdate(
-                    "CREATE TABLE payments (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, types TEXT NOT NULL, price DECIMAl NOT NULL, datePayment TEXT NOT NULL)");
+            statement.executeUpdate("CREATE TABLE IF EXISTS payments (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, types TEXT NOT NULL, price DECIMAl NOT NULL, datePayment TEXT NOT NULL)");
+            statement.executeUpdate("CREATE TABLE IF EXISTS Orders (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, address TEXT NOT NULL, payment TEXT NOT NULL )");
+
             try{ 
             while (rs.next()) {
                 System.out.println("Nome do produto: " + rs.getString("name"));

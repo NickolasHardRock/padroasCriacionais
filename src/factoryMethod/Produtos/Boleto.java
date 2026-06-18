@@ -13,11 +13,11 @@ public class Boleto implements Pagar{
  Scanner sc = new Scanner(System.in);
 
 @Override
-public void pagar(){
+public void pagar(double valor){
     System.out.println("Pagamento via boleto");
     
     System.out.println("Digite o valor:");
-    Double valor = sc.nextDouble();
+    valor = sc.nextDouble();
     System.out.println("Chegou aqui 1");
     try{
         Connection conn = Singleton.getInstance().getConnection();

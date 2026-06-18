@@ -8,21 +8,17 @@ import factoryMethod.Criadores.PagamentoBoleto;
 import factoryMethod.Criadores.PagamentoCartao;
 import factoryMethod.Criadores.PagamentoPix;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-import builder.*;
-import builder.builders.CarBuilder;
-import builder.builders.CarManualBuilder;
-import builder.cars.Car;
-import builder.cars.CarType;
-import builder.cars.Manual;
-import builder.components.Engine;
-import builder.components.GPSNavigator;
-import builder.components.Transmission;
-import builder.components.TripComputer;
-// import singleton.Singleton;
-import builder.director.Director;
+import builder.buildersPedidos.builderPedido;
+import builder.buildersPedidos.pedidoBuilder;
+import builder.components.EnderecoEntrega;
+import builder.components.Item;
+import builder.components.Pagamento;
+import builder.order.Order;
+import builder.buildersPedidos.builderPedido;
 
 @SuppressWarnings("unused")
 public class App {
@@ -65,6 +61,19 @@ public class App {
            
         } while (chave);
 
+        List<Item> itens = new ArrayList<>();
+        itens.add(new Item("pizza",25.0,1));
+        itens.add(new Item("Refrigerante", 5.0, 1));
+
+
+        Order pedido = new pedidoBuilder().
+        setItens(itens).
+        adicionarItem(new Item("Refrigerante", 5.0, 1)).
+        setEndereçoDeEntrega(new EnderecoEntrega("Rua das flores, 123")).
+        setFormaDePagamento(new Pagamento("Cartão de crédito")).
+        build();
+
+        System.out.println(pedido);
         // Singleton db = Singleton.getInstance();
 
         // System.out.println(db);

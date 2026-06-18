@@ -13,15 +13,15 @@ public class Pix implements Pagar {
     Scanner sc = new Scanner(System.in);
 
     @Override
-    public void pagar(){
+    public void pagar(double valor){
 
         System.out.println("Pagamento via Pix");
         System.out.println("Digite o valor:");
-        Double valor = sc.nextDouble();
+        valor = sc.nextDouble();
 
         try{
             Connection conn = Singleton.getInstance().getConnection();
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO payments (types,price,datePayment) VALUE (?,?,?)");
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO payments (types,price,datePayment) VALUES (?,?,?)");
             statement.setString(1, "PIX");
             statement.setDouble(2, valor);
             statement.setString(3, LocalDate.now().toString());

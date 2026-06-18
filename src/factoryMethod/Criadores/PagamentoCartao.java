@@ -6,8 +6,6 @@ public class PagamentoCartao extends PagamentoFactory{
     
     @Override
     public Pagar CriarPagamento(){
-        Pagar pagamento = new CartaoDeCredito();
-        pagamento.pagar();
-        return pagamento;
+        return new CartaoDeCredito();
     }
 }
